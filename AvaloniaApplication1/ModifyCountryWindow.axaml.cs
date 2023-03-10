@@ -1,31 +1,27 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using AvaloniaApplication1.Models;
 
 namespace AvaloniaApplication1;
 
-public partial class ModifyUserWindow : Window
+public partial class ModifyCountryWindow : Window
 {
     private UpdatableWindow backWindow;
-    private User user;
+    private Country country;
 
-    public ModifyUserWindow()
+    public ModifyCountryWindow()
     {
         InitializeComponent();
     }
 
-    public ModifyUserWindow(UpdatableWindow window)
+    public ModifyCountryWindow(UpdatableWindow window)
     {
         InitializeComponent();
 
         try
         {
             this.backWindow = window;
-
-            CountryBox.Items = Connection.db.Countries.ToList();
         }
         catch (Exception ex)
         {
@@ -33,23 +29,16 @@ public partial class ModifyUserWindow : Window
         }
     }
 
-    public ModifyUserWindow(UpdatableWindow window, User user)
+    public ModifyCountryWindow(UpdatableWindow window, Country country)
     {
         InitializeComponent();
 
         try
         {
             this.backWindow = window;
-            this.user = user;
+            this.country = country;
 
-            FioBox.Text = user.Fio;
-            DateOfBirthBox.Text = user.DateOfBirth;
-            PhoneNumberBox.Text = user.PhoneNumber;
-            AddressBox.Text = user.Address;
-            CountryBox.Items = Connection.db.Countries.ToList();
-            CountryBox.SelectedItem =
-                (CountryBox.Items as List<Country>).Where(item => item.Name == user.IdcountryNavigation.Name)
-                .FirstOrDefault();
+            NameBox.Text = country.Name;
         }
         catch (Exception ex)
         {
@@ -61,15 +50,7 @@ public partial class ModifyUserWindow : Window
     {
         try
         {
-            user.Fio = FioBox.Text;
-            user.DateOfBirth = DateOfBirthBox.Text;
-            user.PhoneNumber = PhoneNumberBox.Text;
-            user.Address = AddressBox.Text;
-
-            if (CountryBox.SelectedItem != null)
-            {
-                user.Idcountry = (CountryBox.SelectedItem as Country).Id;
-            }
+            country.Name = NameBox.Text;
 
             Connection.db.SaveChanges();
 
@@ -85,7 +66,7 @@ public partial class ModifyUserWindow : Window
     {
         try
         {
-            Connection.db.Users.Remove(user);
+            Connection.db.Countries.Remove(country);
 
             Back();
         }
@@ -94,7 +75,7 @@ public partial class ModifyUserWindow : Window
             Console.WriteLine(ex.Message);
         }
     }
-    
+
     private void BackButtonClick(object? sender, RoutedEventArgs e)
     {
         Back();

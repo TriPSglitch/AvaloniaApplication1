@@ -6,21 +6,21 @@ using AvaloniaApplication1.Models;
 
 namespace AvaloniaApplication1;
 
-public partial class UserWindow : Window, UpdatableWindow
+public partial class CountryWindow : Window, UpdatableWindow
 {
-    private User user;
-    private int userID;
+    private Country country;
+    private int countryID;
 
-    public UserWindow()
+    public CountryWindow()
     {
         InitializeComponent();
     }
 
-    public UserWindow(User user)
+    public CountryWindow(Country country)
     {
         InitializeComponent();
 
-        this.userID = user.Id;
+        this.countryID = country.Id;
 
         Load();
     }
@@ -31,20 +31,16 @@ public partial class UserWindow : Window, UpdatableWindow
 
         try
         {
-            this.user = Connection.db.Users.FirstOrDefault(item => item.Id == userID);
+            this.country = Connection.db.Countries.FirstOrDefault(item => item.Id == this.countryID);
 
-            FioLabel.Content = user.Fio;
-            DateOfBirthLabel.Content = user.DateOfBirth;
-            PhoneNumberLabel.Content = user.PhoneNumber;
-            AddressLabel.Content = user.Address;
-            CountryLabel.Content = user.IdcountryNavigation.Name;
+            NameLabel.Content = country.Name;
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
         }
     }
-
+    
     private void BackButtonClick(object? sender, RoutedEventArgs e)
     {
         MainWindow mainWindow = new MainWindow();
@@ -54,8 +50,8 @@ public partial class UserWindow : Window, UpdatableWindow
 
     private void ChangeButtonClick(object? sender, RoutedEventArgs e)
     {
-        ModifyUserWindow modifyUserWindow = new ModifyUserWindow(this, user);
-        modifyUserWindow.Show();
+        ModifyCountryWindow modifyCountryWindow = new ModifyCountryWindow(this, country);
+        modifyCountryWindow.Show();
         this.Hide();
     }
 }
