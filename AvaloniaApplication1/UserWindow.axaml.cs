@@ -1,13 +1,14 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 using AvaloniaApplication1.Models;
 
 namespace AvaloniaApplication1;
 
 public partial class UserWindow : Window
 {
+    private User user;
+    
     public UserWindow()
     {
         InitializeComponent();
@@ -22,6 +23,8 @@ public partial class UserWindow : Window
 #if DEBUG
         this.AttachDevTools();
 #endif
+
+        this.user = user;
 
         FioLabel.Content = user.Fio;
         DateOfBirthLabel.Content = user.DateOfBirth;
@@ -39,6 +42,8 @@ public partial class UserWindow : Window
 
     private void ChangeButtonClick(object? sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        ModifyUserWindow modifyUserWindow = new ModifyUserWindow(this, user);
+        modifyUserWindow.Show();
+        this.Close();
     }
 }

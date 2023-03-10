@@ -60,6 +60,8 @@ public partial class MainWindow : Window
 
     private void AddUserButtonClick(object? sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        ModifyUserWindow modifyUserWindow = new ModifyUserWindow(this);
+        modifyUserWindow.Show();
+        this.Close();
     }
 }
