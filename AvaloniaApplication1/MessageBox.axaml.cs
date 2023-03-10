@@ -8,7 +8,7 @@ namespace AvaloniaApplication1;
 public partial class MessageBox : Window
 {
     private string text;
-    
+
     public MessageBox()
     {
         InitializeComponent();
@@ -22,13 +22,13 @@ public partial class MessageBox : Window
         AvaloniaXamlLoader.Load(this);
     }
 
-    public MessageBox(string text)
+    public MessageBox(string? text)
     {
         InitializeComponent();
 #if DEBUG
         this.AttachDevTools();
 #endif
-        
+
         try
         {
             this.text = text;
@@ -37,7 +37,6 @@ public partial class MessageBox : Window
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
-            Console.WriteLine(ex.StackTrace);
         }
     }
 }

@@ -6,6 +6,7 @@
         x:Class="AvaloniaApplication1.MessageBox"
         Title="MessageBox" Width="250" Height="250" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Label Name="Text" Content="dsfsdf" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" Margin="0" Foreground="Black"/>
+        <Label Name="Text" Content="dsfsdf" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+               FontSize="24" Margin="0" Foreground="Black" />
     </Grid>
 </Window>

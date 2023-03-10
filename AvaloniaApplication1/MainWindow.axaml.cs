@@ -3,53 +3,63 @@ using System.Collections.Generic;
 using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using AvaloniaApplication1.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AvaloniaApplication1;
-
-public class User
-{
-    public User(string Fio, string DateOfBirth, string PhoneNumber, string Address)
-    {
-        this.Fio = Fio;
-        this.DateOfBirth = DateOfBirth;
-        this.PhoneNumber = PhoneNumber;
-        this.Address = Address;
-    }
-
-    public string Fio;
-    public string DateOfBirth;
-    public string PhoneNumber;
-    public string Address;
-}
 
 public partial class MainWindow : Window
 {
     public MainWindow()
     {
         InitializeComponent();
-        
+
         try
         {
-            User user = new User("Karbyshev", "01.08.2003", "89009214113", "Stadionnaya 13");
+            UsersList.Items = Connection.db.Users.Include(item => item.IdcountryNavigation).ToList();
 
-            List<User> usersList = new List<User>();
-            usersList.Add(user);
-
-            UsersList.Items = usersList;
-            UsersList.SelectedIndex = 0;
-
-            MessageBox ms = new MessageBox(usersList.Count().ToString());
-            ms.Show();
+            CountriesList.Items = Connection.db.Countries.ToList();
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
-            Console.WriteLine(ex.StackTrace);
         }
     }
 
-    private void UsersListClick(object? sender, RoutedEventArgs e)
+    private void UsersListOnDoubleTapped(object? sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        if (UsersList.SelectedItem != null)
+        {
+            User user = UsersList.SelectedItem as User;
+
+            if (user is User && user != null)
+            {
+                UserWindow userWindow = new UserWindow(user);
+                userWindow.Show();
+                this.Close();
+            }
+        }
+    }
+
+    private void CountriesListOnDoubleTapped(object? sender, RoutedEventArgs e)
+    {
+        try
+        {
+            Country country = CountriesList.SelectedItem as Country;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    private void AddCountryButtonClick(object? sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void AddUserButtonClick(object? sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
     }
 }
