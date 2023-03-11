@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AvaloniaApplication1;
 
-public partial class MainWindow : Window, UpdatableWindow
+public partial class MainWindow : Window, IUpdatableWindow
 {
     public MainWindow()
     {

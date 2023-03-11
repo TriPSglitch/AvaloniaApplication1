@@ -6,7 +6,7 @@ using AvaloniaApplication1.Models;
 
 namespace AvaloniaApplication1;
 
-public partial class CountryWindow : Window, UpdatableWindow
+public partial class CountryWindow : Window, IUpdatableWindow
 {
     private Country country;
     private int countryID;

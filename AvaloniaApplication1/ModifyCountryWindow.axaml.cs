@@ -7,7 +7,7 @@ namespace AvaloniaApplication1;
 
 public partial class ModifyCountryWindow : Window
 {
-    private UpdatableWindow backWindow;
+    private IUpdatableWindow backWindow;
     private Country country;
 
     public ModifyCountryWindow()
@@ -15,7 +15,7 @@ public partial class ModifyCountryWindow : Window
         InitializeComponent();
     }
 
-    public ModifyCountryWindow(UpdatableWindow window)
+    public ModifyCountryWindow(IUpdatableWindow window)
     {
         InitializeComponent();
 
@@ -29,7 +29,7 @@ public partial class ModifyCountryWindow : Window
         }
     }
 
-    public ModifyCountryWindow(UpdatableWindow window, Country country)
+    public ModifyCountryWindow(IUpdatableWindow window, Country country)
     {
         InitializeComponent();
 

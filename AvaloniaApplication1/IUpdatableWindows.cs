@@ -1,6 +1,6 @@
 namespace AvaloniaApplication1;
 
-public interface UpdatableWindow
+public interface IUpdatableWindow
 {
     public void Load();
 

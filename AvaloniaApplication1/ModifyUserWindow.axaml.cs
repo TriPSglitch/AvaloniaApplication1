@@ -9,7 +9,7 @@ namespace AvaloniaApplication1;
 
 public partial class ModifyUserWindow : Window
 {
-    private UpdatableWindow backWindow;
+    private IUpdatableWindow backWindow;
     private User user;
 
     public ModifyUserWindow()
@@ -17,7 +17,7 @@ public partial class ModifyUserWindow : Window
         InitializeComponent();
     }
 
-    public ModifyUserWindow(UpdatableWindow window)
+    public ModifyUserWindow(IUpdatableWindow window)
     {
         InitializeComponent();
 
@@ -33,7 +33,7 @@ public partial class ModifyUserWindow : Window
         }
     }
 
-    public ModifyUserWindow(UpdatableWindow window, User user)
+    public ModifyUserWindow(IUpdatableWindow window, User user)
     {
         InitializeComponent();
 

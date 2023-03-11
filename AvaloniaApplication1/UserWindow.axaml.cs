@@ -6,7 +6,7 @@ using AvaloniaApplication1.Models;
 
 namespace AvaloniaApplication1;
 
-public partial class UserWindow : Window, UpdatableWindow
+public partial class UserWindow : Window, IUpdatableWindow
 {
     private User user;
     private int userID;
